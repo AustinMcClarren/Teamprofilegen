@@ -1,8 +1,13 @@
 {
   "devDependencies": {
-    "jest": "^29.4.0"
+    "jest": "^24.8.0"
   },
   "dependencies": {
     "inquirer": "^9.1.4"
+  },
+  "scripts": {
+    "test": "jest --verbose test/*"
   }
-}
+  }
+  
+

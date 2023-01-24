@@ -11,9 +11,68 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 
+teamArray = [];
 
+//a function to create the question prompt
+    function theTeam () 
+      inquirer.prompt([{
+        type: "list",
+        message: "What type of employee would you like to add to your team?",
+        name: "addEmployee",
+        choices: ["Manager", "Engineer", "Intern", "No more members."]
+      }]).then(function (userInput) {
+        switch(userInput.addEmployee) {
+          case "Manager":
+            addManager();
+            break;
+          case "Engineer":
+            addEngineer();
+            break;
+          case "Intern":
+            addIntern();
+            break;
+  
+          default:
+            htmlbuild();
+        }
+      })
 
-
+      //function that will add the manager and questions about the manager.
+      function addManager() {
+        inquirer.prompt ([
+          
+          {
+            type: "input",
+            name: "managerName",
+            message: "What is the manager's name?"
+          },
+      
+          {
+            type: "input",
+            name: "managerId",
+            message: "What is the manager's employee ID number?"
+          },
+      
+          {
+            type: "input",
+            name: "managerEmail",
+            message: "What is the manager's email address?"
+          },
+      
+          {
+            type: "input",
+            name: "managerOfficeNumber",
+            message: "What is the manager's office number?"
+          }
+      
+        ]).then(answers => {
+          const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+          teamArray.push(manager);
+          theTeam();
+        });
+      
+      }
+    
 
 
 
