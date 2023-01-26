@@ -1,19 +1,23 @@
-const Employee = require('../lib/Employee')
-const employee = new Employee('austin' , '2048323', 'austinmcclarren1@gmail.com');
+const Employee = require('../lib/Employee') 
 
-test('test for employee', () => {
-    expect(employee.name).toBe('austin')
-    expect(employee.id).toBe('2048323')
-    expect(employee.email).toBe('austinmcclarren1@gmail.com')
 
-});
-
-test('test if we get back the name', ()=> {
-    expect(employee.getName()).toBe('austin')
+// testing to see if we get name back 
+test('test if we get back the name', ()=> { 
+    const name = 'austin';
+    const employee = new Employee(name)
+    expect(employee.getName()).toBe(name)
 })
+// testing to see if we get id back
 test('test if we get back the id', ()=> {
-    expect(employee.id()).toBe('2048323')
+    const id = 12345;
+    const employee = new Employee('austin', id)
+    expect(employee.getId()).toBe(id)
 })
+// testing to see if we get email back
 test('test if we get back the email', ()=> {
-    expect(employee.email()).toBe('austinmcclarren1@gmail.com')
+    const email = 'austin@gmail.com';
+    const employee = new Employee('ian', 2, email)
+    expect(employee.getEmail()).toBe(email)
 })
+
+

@@ -1,5 +1,7 @@
-// page creation
-const generateHTML = require('./src/generateHTML');
+// node modules 
+const fs = require('fs'); 
+const inquirer = require('inquirer');
+
 
 
 // team profiles
@@ -8,13 +10,10 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern'); 
 const Employee = require('./lib/Employee');
 
+// page creation
+const generateHTML = require('./src/generateHTML');
 
-// node modules 
-const fs = require('fs'); 
-const inquirer = require('inquirer');
-const addEmployee = require('./lib/Employee');
-const {writeFile} = require('fs').promises
-
+   const teamArray = [];
 
       // manager function
       function addManager() {
@@ -53,17 +52,17 @@ const {writeFile} = require('fs').promises
         ]).then(manager => {
           const managerInfo = new Manager(manager.name , manager.id, manager.email, manager.officeNumber);
           teamArray.push(manager);
-          addManager();
         });
-      
+        
       }
+      addManager();
+
+      //con statement
+// if choices equal?
 
 
 
-
-
-
-// const init function to generate the page
+// const init function to generate the page?
 
 
       
