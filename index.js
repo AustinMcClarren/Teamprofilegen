@@ -3,19 +3,21 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 
-
 // team profiles
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern'); 
-const Employee = require('./lib/Employee');
 
 // page creation
 const generateHTML = require('./src/generateHTML');
+const teamArray = [];
 
-   const teamArray = [];
+     
 
-      // manager function
+
+
+
+// manager function
       function addManager() {
         inquirer.prompt ([
           
@@ -48,14 +50,128 @@ const generateHTML = require('./src/generateHTML');
             message: "select an employee you would like to add!",
             choices:['Intern','Engineer', 'Manager','No more employees!']
           }
-      
+          
         ]).then(manager => {
           const managerInfo = new Manager(manager.name , manager.id, manager.email, manager.officeNumber);
           teamArray.push(manager);
         });
+        addManager();
         
       }
-      addManager();
+
+
+
+      function addEngineer() {
+        inquirer.prompt ([
+          
+          {
+            type: "input",
+            name: "name",
+            message: "What is the Engineers name?"
+          },
+      
+          {
+            type: "input",
+            name: "id",
+            message: "What is your employee ID number?"
+          },
+      
+          {
+            type: "input",
+            name: "email",
+            message: "What is the engineers email address?"
+          },
+      
+          {
+            type: "input",
+            name: "github",
+            message: "What is your github username?",
+          },
+          {
+            type:"list",
+            name:"addEmployee",
+            message: "select an employee you would like to add!",
+            choices:['Intern','Engineer', 'Manager','No more employees!']
+          }
+      
+        ]).then(engineer => {
+          const engineerInfo = new Engineer(engineer.name , engineer.id, engineer.email, engineer.github);
+          teamArray.push(engineer);
+        });
+        addEngineer();
+      }
+
+      function addIntern() {
+        inquirer.prompt ([
+          
+          {
+            type: "input",
+            name: "name",
+            message: "What is the Interns name?"
+          },
+      
+          {
+            type: "input",
+            name: "id",
+            message: "What is your employee ID number?"
+          },
+      
+          {
+            type: "input",
+            name: "email",
+            message: "What is the interns email address?"
+          },
+      
+          {
+            type: "input",
+            name: "school",
+            message: "What school are you attending?",
+          },
+          {
+            type:"list",
+            name:"addEmployee",
+            message: "select an employee you would like to add!",
+            choices:['Intern','Engineer', 'Manager','No more employees!']
+          }
+      
+        ]).then(intern => {
+          const InternInfo = new Intern(intern.name , intern.id, intern.email, intern.school);
+          teamArray.push(intern);
+        });
+        addIntern();
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
 
       //con statement
 // if choices equal?
