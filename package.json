@@ -3,11 +3,10 @@
     "jest": "^24.8.0"
   },
   "dependencies": {
+    "all": "^0.0.0",
     "inquirer": "^9.1.4"
   },
   "scripts": {
     "test": "jest --verbose test/*"
   }
-  }
-  
-
+}

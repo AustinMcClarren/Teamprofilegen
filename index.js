@@ -148,31 +148,6 @@ const teamArray = [];
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
       //con statement
 // if choices equal?
 
