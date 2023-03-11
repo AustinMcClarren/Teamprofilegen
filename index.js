@@ -141,19 +141,42 @@ const teamArray = [];
         addIntern();
       }
 
-
-
-
-
-
-
-
-      //con statement
-// if choices equal?
-
-
-
-// const init function to generate the page?
+      const nextPrompt = () => {
+        return inquirer
+          .prompt([
+            {
+              type: 'list',
+              name: 'nextSteps',
+              message: 'Please choose from one of the following:',
+              choices: ['Add an Engineer', 'Add an Intern', 'Finish building team'],
+            },
+          ])
+          .then((chosenStep) => {
+            if (chosenStep.nextSteps == 'Add an Engineer') {
+              addEngineer();
+            } else if (chosenStep.nextSteps == 'Add an Intern') {
+              addIntern();
+            } else {
+              generateWebpage();
+            }
+          });
+      };
+      
+      // Create the class objects for each employee
+      function generateWebpage() {
+        // Then we pass the array into the function that generates the content
+        employeeProfiles = generatePage(teamArray);
+        // Afterwards generate the HTML file
+        fs.writeFile('./dist/generateHTML.html', employeeProfiles, (err) => {
+          if (err) throw new Error(err);
+          // Then alert the user the file has been successfully generated
+          console.log(
+            'Your HTML has been created! Check out HTML in this directory to see it!'
+          );
+        });
+      }
+      
+      addManager().then(nextPrompt);
 
 
       
