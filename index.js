@@ -18,27 +18,28 @@ const teamArray = [];
 
 
 // manager function
-      function addManager() {
-        inquirer.prompt ([
+async function questions(){
+ async function addManager() {
+   inquirer.prompt ([
           
           {
             type: "input",
             name: "name",
             message: "What is the managers name?"
           },
-      
+          
           {
             type: "input",
             name: "id",
             message: "What is the  managers ID number?"
           },
-      
+          
           {
             type: "input",
             name: "email",
             message: "What is the managers email address?"
           },
-      
+          
           {
             type: "input",
             name: "officeNumber",
@@ -53,15 +54,28 @@ const teamArray = [];
           
         ]).then(manager => {
           const managerInfo = new Manager(manager.name , manager.id, manager.email, manager.officeNumber);
-          teamArray.push(manager);
+          teamArray.push(managerInfo);
+          if (manager.addEmployee === "Intern"){
+             addIntern();
+          } else if(manager.addEmployee === "Engineer"){
+            addEngineer();
+          } else if (manager.addEmployee === "Manager"){
+            addManager();
+          } else{
+            console.log("thats it, goodbye")
+            return "thats it, goodbye"
+
+          }
+          // console.log(teamArray)
+          
         });
-        addManager();
         
+        // addManager();
       }
-
-
-
-      function addEngineer() {
+      
+      
+      
+      async function addEngineer() {
         inquirer.prompt ([
           
           {
@@ -69,19 +83,19 @@ const teamArray = [];
             name: "name",
             message: "What is the Engineers name?"
           },
-      
+          
           {
             type: "input",
             name: "id",
             message: "What is your employee ID number?"
           },
-      
+          
           {
             type: "input",
             name: "email",
             message: "What is the engineers email address?"
           },
-      
+          
           {
             type: "input",
             name: "github",
@@ -93,15 +107,26 @@ const teamArray = [];
             message: "select an employee you would like to add!",
             choices:['Intern','Engineer', 'Manager','No more employees!']
           }
-      
+          
         ]).then(engineer => {
           const engineerInfo = new Engineer(engineer.name , engineer.id, engineer.email, engineer.github);
-          teamArray.push(engineer);
+          teamArray.push(engineerInfo);
+          if (engineer.addEmployee === "Intern"){
+            addIntern();
+          } else if(engineer.addEmployee === "Engineer"){
+            addEngineer();
+          } else if (engineer.addEmployee === "Manager"){
+            addManager();
+          } else{
+            console.log("thats it, goodbye")
+            return "thats it, goodbye"
+          }
+          // console.log(teamArray)
         });
-        addEngineer();
       }
-
-      function addIntern() {
+      // addEngineer();
+      
+      async function addIntern() {
         inquirer.prompt ([
           
           {
@@ -115,13 +140,13 @@ const teamArray = [];
             name: "id",
             message: "What is your employee ID number?"
           },
-      
+          
           {
             type: "input",
             name: "email",
             message: "What is the interns email address?"
           },
-      
+          
           {
             type: "input",
             name: "school",
@@ -132,31 +157,95 @@ const teamArray = [];
             name:"addEmployee",
             message: "select an employee you would like to add!",
             choices:['Intern','Engineer', 'Manager','No more employees!']
-          }
-      
+            
+          },
+          
         ]).then(intern => {
           const InternInfo = new Intern(intern.name , intern.id, intern.email, intern.school);
-          teamArray.push(intern);
+          teamArray.push(InternInfo);
+          if (intern.addEmployee === "Intern"){
+            addIntern();
+          } else if(intern.addEmployee === "Engineer"){
+            addEngineer();
+          } else if (intern.addEmployee === "Manager"){
+            addManager();
+          } else{
+            console.log("thats it, goodbye")
+            return "thats it, goodbye"
+          }
+          // console.log(teamArray)
         });
-        addIntern();
+        // addIntern();
       }
-
-
-
-
-
-
-
-
-      //con statement
-// if choices equal?
-
-
-
-// const init function to generate the page?
-
-
+        console.log("follow the questions!")
+       await addManager();
+    
+    } //ENDS HERE
       
+    async function init(){
+    await questions();
+  // console.log(teamArray)
+}
+init();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// addManager();
+// console.log(teamArray);
+
+
+
+
+
+
+
+
+
+//         function writeFile(data) {
+  //   fs.writeFile('./dist/teamgen.html', data, err => {
+    //     if (err) {
+      //       console.log(err);
+      //       return;
+      //     } else {
+        //       console.log("something has been created... maybe a team?");
+        //     }
+        //     //if there is an error, throw it
+        //   })
+        // };
+
+
+
+
+
+
+
+
+//   .then(addIntern)
+//   .then(teamArray => {
+//     return generateHTML(teamArray);
+//   })
+//   .then(pageHTML => {
+//     return writeFile(pageHTML);
+//   })
+//   .catch(err => {
+//  console.log(err);
+//   });
+
+
       
     
 
